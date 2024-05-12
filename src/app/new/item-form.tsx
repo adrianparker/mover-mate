@@ -1,3 +1,4 @@
+import { CreateItems } from "@/actions/items-actions";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -21,15 +22,15 @@ import { Textarea } from "@/components/ui/textarea";
 
 const ItemForm = () => {
   return (
-    <Card className="w-[350px]">
-      <CardHeader>
-        <CardTitle>Add item</CardTitle>
-        <CardDescription>
-          Fill out the form below to add a new item.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form>
+    <form action={CreateItems}>
+      <Card className="w-[350px]">
+        <CardHeader>
+          <CardTitle>Add item</CardTitle>
+          <CardDescription>
+            Fill out the form below to add a new item.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
           <div className="grid w-full items-center gap-4">
             <div className="grid grid-cols-2 gap-x-1">
               <div>
@@ -59,7 +60,7 @@ const ItemForm = () => {
             </div>
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="room">Room</Label>
-              <Select>
+              <Select name="room">
                 <SelectTrigger id="room">
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
@@ -83,14 +84,14 @@ const ItemForm = () => {
             </div>
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="fragil">is fragil?</Label>
-              <RadioGroup defaultValue="option-fragil">
+              <RadioGroup defaultValue="option-fragil" name="fragil">
                 <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="option-fragil" id="option-fragil" />
+                  <RadioGroupItem value="fragil" id="option-fragil" />
                   <Label htmlFor="option-fragil">Yes, it is fragil</Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem
-                    value="option-no-fragil"
+                    value="no fragil"
                     id="option-no-fragil"
                   />
                   <Label htmlFor="option-no-fragil">No, it is not fragil</Label>
@@ -99,25 +100,25 @@ const ItemForm = () => {
             </div>
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="fragil">This item must hand on?</Label>
-              <RadioGroup defaultValue="option-hand">
+              <RadioGroup defaultValue="option-hand" name="hand">
                 <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="option-hand" id="option-hand" />
+                  <RadioGroupItem value="hand on" id="option-hand" />
                   <Label htmlFor="option-hand">Yes, hand on</Label>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="option-no-hand" id="option-no-hand" />
+                  <RadioGroupItem value="no hand on" id="option-no-hand" />
                   <Label htmlFor="option-no-hand">No, it is not hand on</Label>
                 </div>
               </RadioGroup>
             </div>
           </div>
-        </form>
-      </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button variant="outline">Cancel</Button>
-        <Button>Add</Button>
-      </CardFooter>
-    </Card>
+        </CardContent>
+        <CardFooter className="flex justify-between">
+          <Button variant="outline">Cancel</Button>
+          <Button type="submit">Add</Button>
+        </CardFooter>
+      </Card>
+    </form>
   );
 };
 

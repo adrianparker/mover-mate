@@ -12,10 +12,10 @@ datasource db {
 
 model Item {
   id      Int     @id @default(autoincrement())
-  number  Int
+  number  String?
   color   String?
   content String?
   room    String  @default("master")
-  fragil  Boolean @default(true)
-  hand    Boolean @default(false)
+  fragil  String?
+  hand    String?
 }
