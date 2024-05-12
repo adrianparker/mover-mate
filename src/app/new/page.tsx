@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import ItemForm from "./item-form";
 
 function NewItem() {
   return (
-    <div>New Item</div>
-  )
+    <div>
+      <h1>New Item</h1>
+      <ItemForm />
+    </div>
+  );
 }
 
-export default NewItem
+export default NewItem;
