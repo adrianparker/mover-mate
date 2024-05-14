@@ -1,6 +1,7 @@
 "use server";
 
 import prisma from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function CreateItems(formData: FormData) {
@@ -27,6 +28,22 @@ export async function CreateItems(formData: FormData) {
       hand: hand,
     },
   });
-  console.log("newItem",newItem);
+  console.log("newItem", newItem);
   redirect("/");
+}
+
+export async function removeItem(formData: FormData) {
+  "use server";
+  const itemId = formData.get("itemId")?.toString();
+
+  if (!itemId) {
+    return;
+  }
+
+  await prisma.item.delete({
+    where: {
+      id: parseInt(itemId),
+    },
+  });
+  revalidatePath("/");
 }

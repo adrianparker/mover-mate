@@ -1,9 +1,9 @@
+import ItemDeleteButton from "./item-delete-button";
 import {
   Card,
   CardHeader,
   CardTitle,
   CardContent,
-  CardDescription,
   CardFooter,
 } from "./ui/card";
 import { Item } from "@prisma/client";
@@ -37,6 +37,7 @@ export function ItemCard({ item }: { item: Item }) {
         <span className="text-slate-500">
           {new Date(item.creatAt).toLocaleDateString()}
         </span>
+        <ItemDeleteButton itemId={item.id}/>
       </CardFooter>
     </Card>
   );
