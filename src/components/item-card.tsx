@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ItemDeleteButton from "./item-delete-button";
 import {
   Card,
@@ -38,6 +39,7 @@ export function ItemCard({ item }: { item: Item }) {
           {new Date(item.creatAt).toLocaleDateString()}
         </span>
         <ItemDeleteButton itemId={item.id}/>
+        <Link href={`/item/${item.id}/edit`}>Edit</Link>
       </CardFooter>
     </Card>
   );
