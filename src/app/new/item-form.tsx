@@ -1,4 +1,4 @@
-import { CreateItems } from "@/actions/items-actions";
+import { createItem, updateItem } from "@/actions/items-actions";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -19,10 +19,14 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { Item } from "@prisma/client";
 
-const ItemForm = () => {
+export function ItemForm({ item }: { item: Item }) {
+  const functionAction = item?.id ? updateItem : createItem;
+  console.log("itemForm", item);
   return (
-    <form action={CreateItems}>
+    <form action={functionAction}>
+      <input type="hidden" name="id" value={item?.id} />
       <Card className="w-[350px]">
         <CardHeader>
           <CardTitle>Add item</CardTitle>
@@ -39,6 +43,7 @@ const ItemForm = () => {
                   id="number"
                   name="number"
                   placeholder="Number of your item"
+                  defaultValue={item?.number || ""}
                 />
               </div>
               <div>
@@ -47,6 +52,7 @@ const ItemForm = () => {
                   id="color"
                   name="color"
                   placeholder="color of your item"
+                  defaultValue={item?.color || ""}
                 />
               </div>
             </div>
@@ -56,11 +62,12 @@ const ItemForm = () => {
                 id="content"
                 name="content"
                 placeholder="Content inside"
+                defaultValue={item?.content || ""}
               />
             </div>
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="room">Room</Label>
-              <Select name="room">
+              <Select name="room" defaultValue={item?.room}>
                 <SelectTrigger id="room">
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
@@ -84,23 +91,20 @@ const ItemForm = () => {
             </div>
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="fragil">is fragil?</Label>
-              <RadioGroup defaultValue="option-fragil" name="fragil">
+              <RadioGroup name="fragil" defaultValue={item?.fragil || ""}>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="fragil" id="option-fragil" />
                   <Label htmlFor="option-fragil">Yes, it is fragil</Label>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <RadioGroupItem
-                    value="no fragil"
-                    id="option-no-fragil"
-                  />
+                  <RadioGroupItem value="no fragil" id="option-no-fragil" />
                   <Label htmlFor="option-no-fragil">No, it is not fragil</Label>
                 </div>
               </RadioGroup>
             </div>
             <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="fragil">This item must hand on?</Label>
-              <RadioGroup defaultValue="option-hand" name="hand">
+              <Label htmlFor="hand">This item must hand on?</Label>
+              <RadioGroup defaultValue={item?.hand || ""} name="hand">
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="hand on" id="option-hand" />
                   <Label htmlFor="option-hand">Yes, hand on</Label>
@@ -115,11 +119,11 @@ const ItemForm = () => {
         </CardContent>
         <CardFooter className="flex justify-between">
           <Button variant="outline">Cancel</Button>
-          <Button type="submit">Add</Button>
+          <Button type="submit">{item?.id ? "Update item" : "Add item"}</Button>
         </CardFooter>
       </Card>
     </form>
   );
-};
+}
 
 export default ItemForm;

@@ -4,7 +4,7 @@ import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export async function CreateItems(formData: FormData) {
+export async function createItem(formData: FormData) {
   const number = formData.get("number")?.toString();
   const color = formData.get("color")?.toString();
   const content = formData.get("content")?.toString();
@@ -46,4 +46,37 @@ export async function removeItem(formData: FormData) {
     },
   });
   revalidatePath("/");
+}
+
+export async function updateItem(formData: FormData) {
+  const id = formData.get("id")?.toString();
+  const room = formData.get("room")?.toString();
+  const number = formData.get("number")?.toString();
+  const content = formData.get("content")?.toString();
+  const color = formData.get("color")?.toString();
+  const fragil = formData.get("fragil")?.toString();
+  const hand = formData.get("hand")?.toString();
+
+  console.log({ id, room, number, content, color, fragil, hand });
+  if (!id || !room || !number || !content || !color || !fragil || !hand) {
+    return;
+  }
+  console.log({ id, room, number, content, color, fragil, hand });
+
+  await prisma.item.update({
+    where: {
+      id: parseInt(id),
+    },
+    data: {
+      room: room,
+      number: number,
+      content: content,
+      color: color,
+      fragil: fragil,
+      hand: hand,
+    },
+  });
+
+  console.log("id before redirect",id)
+  redirect("/");
 }
