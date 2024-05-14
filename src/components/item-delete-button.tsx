@@ -5,7 +5,7 @@ function ItemDeleteButton({ itemId }: { itemId: number }) {
   return (
     <form action={removeItem}>
       <input type="hidden" name="itemId" value={itemId} />
-      <Button>Delete</Button>
+      <Button variant="destructive">Delete</Button>
     </form>
   );
 }

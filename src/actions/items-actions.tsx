@@ -12,13 +12,12 @@ export async function createItem(formData: FormData) {
   const fragil = formData.get("fragil")?.toString();
   const hand = formData.get("hand")?.toString();
 
-  console.log({ number, color, content, room, fragil, hand });
 
   if (!number || !color || !content || !room || !fragil || !hand) {
     return;
   }
 
-  const newItem = await prisma.item.create({
+  await prisma.item.create({
     data: {
       number: number,
       color: color,
@@ -28,7 +27,6 @@ export async function createItem(formData: FormData) {
       hand: hand,
     },
   });
-  console.log("newItem", newItem);
   redirect("/");
 }
 
@@ -57,11 +55,9 @@ export async function updateItem(formData: FormData) {
   const fragil = formData.get("fragil")?.toString();
   const hand = formData.get("hand")?.toString();
 
-  console.log({ id, room, number, content, color, fragil, hand });
   if (!id || !room || !number || !content || !color || !fragil || !hand) {
     return;
   }
-  console.log({ id, room, number, content, color, fragil, hand });
 
   await prisma.item.update({
     where: {
@@ -77,6 +73,5 @@ export async function updateItem(formData: FormData) {
     },
   });
 
-  console.log("id before redirect",id)
   redirect("/");
 }
