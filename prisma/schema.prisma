@@ -11,11 +11,13 @@ datasource db {
 }
 
 model Item {
-  id      Int     @id @default(autoincrement())
-  number  String?
-  color   String?
-  content String?
-  room    String  @default("master")
-  fragil  String?
-  hand    String?
+  id       Int      @id @default(autoincrement())
+  number   String?
+  color    String?
+  content  String?
+  room     String   @default("master")
+  fragil   String?
+  hand     String?
+  creatAt  DateTime @default(now())
+  updateAt DateTime @updatedAt
 }

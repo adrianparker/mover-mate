@@ -11,6 +11,7 @@ export async function CreateItems(formData: FormData) {
   const fragil = formData.get("fragil")?.toString();
   const hand = formData.get("hand")?.toString();
 
+  console.log({ number, color, content, room, fragil, hand });
 
   if (!number || !color || !content || !room || !fragil || !hand) {
     return;
@@ -26,6 +27,6 @@ export async function CreateItems(formData: FormData) {
       hand: hand,
     },
   });
-  console.log(newItem);
+  console.log("newItem",newItem);
   redirect("/");
 }
