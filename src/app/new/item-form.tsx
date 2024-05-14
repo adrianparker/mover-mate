@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Item } from "@prisma/client";
+import Link from "next/link";
 
 export function ItemForm({ item }: { item: Item }) {
   const functionAction = item?.id ? updateItem : createItem;
@@ -118,7 +119,7 @@ export function ItemForm({ item }: { item: Item }) {
           </div>
         </CardContent>
         <CardFooter className="flex justify-between">
-          <Button variant="outline">Cancel</Button>
+          <Link href="/">Cancel</Link>
           <Button type="submit">{item?.id ? "Update item" : "Add item"}</Button>
         </CardFooter>
       </Card>
