@@ -1,10 +1,8 @@
-import React from "react";
 import ItemForm from "./item-form";
 
 function NewItem() {
   return (
-    <div>
-      <h1>New Item</h1>
+    <div className="flex justify-center items-center">
       <ItemForm />
     </div>
   );

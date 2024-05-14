@@ -1,5 +1,5 @@
 import { createItem, updateItem } from "@/actions/items-actions";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -24,7 +24,6 @@ import Link from "next/link";
 
 export function ItemForm({ item }: { item: Item }) {
   const functionAction = item?.id ? updateItem : createItem;
-  console.log("itemForm", item);
   return (
     <form action={functionAction}>
       <input type="hidden" name="id" value={item?.id} />
@@ -91,7 +90,7 @@ export function ItemForm({ item }: { item: Item }) {
               </Select>
             </div>
             <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="fragil">is fragil?</Label>
+              <Label htmlFor="fragil">is it fragil?</Label>
               <RadioGroup name="fragil" defaultValue={item?.fragil || ""}>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="fragil" id="option-fragil" />
@@ -119,7 +118,9 @@ export function ItemForm({ item }: { item: Item }) {
           </div>
         </CardContent>
         <CardFooter className="flex justify-between">
-          <Link href="/">Cancel</Link>
+          <Link href="/" className={buttonVariants({ variant: "secondary" })}>
+            Cancel
+          </Link>
           <Button type="submit">{item?.id ? "Update item" : "Add item"}</Button>
         </CardFooter>
       </Card>

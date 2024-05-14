@@ -20,7 +20,7 @@ export default async function EditPage({
   }
 
   return (
-    <div>
+    <div className="flex justify-center items-center h-screen">
       <ItemForm item={item} />
     </div>
   );
