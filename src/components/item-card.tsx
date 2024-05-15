@@ -23,7 +23,7 @@ export function ItemCard({ item }: { item: Item }) {
         <CardTitle className="flex flex-row justify-center">
           {item.room.toUpperCase()}
         </CardTitle>
-        <CardContent className="flex flex-row justify-between  border-white/50 border-2">
+        <CardContent className="flex flex-row justify-between">
           <span>Num. {item.number}</span>
           <p>{item.color}</p>
         </CardContent>
@@ -31,27 +31,31 @@ export function ItemCard({ item }: { item: Item }) {
       <CardContent className="border-white/50 border-2">
         <p>Content: {item.content}</p>
       </CardContent>
-      <CardContent className="flex flex-row justify-between">
-        <span className="text-slate-500">Observations:</span>
-        {item.fragil === "no fragil" ? null : (
-          <span className="text-red-500">
-            <p>{item.fragil?.toLocaleUpperCase()}</p>
-          </span>
-        )}
-        {item.hand === "no hand on" ? null : (
-          <Badge className="bg-orange-500">
+      {item.fragil !== "no fragil" || item.hand !== "no hand on" ? (
+        <CardContent className="flex flex-row justify-start gap-4 mt-2">
+          {item.fragil !== "no fragil" && item.fragil ? (
+            <Badge className="bg-red-500">
             <span>
-              <p>{item.hand}</p>
+              <p>{item.fragil?.toUpperCase()}</p>
             </span>
-          </Badge>
-        )}
-      </CardContent>
+            </Badge>
+          ) : null}
+          {item.hand !== "no hand on" && item.hand ? (
+            <Badge className="bg-orange-500">
+              <span>
+                <p>{item.hand}</p>
+              </span>
+            </Badge>
+          ) : null}
+        </CardContent>
+      ) : null}
+
       <CardDescription>
         <span className="text-slate-500">
           {new Date(item.creatAt).toLocaleDateString()}
         </span>
       </CardDescription>
-      <CardFooter className="flex justify-between">
+      <CardFooter className="flex justify-between mt-2">
         <ItemDeleteButton itemId={item.id} />
         <Link
           href={`/item/${item.id}/edit`}
