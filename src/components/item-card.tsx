@@ -29,7 +29,8 @@ export function ItemCard({ item }: { item: Item }) {
         </CardContent>
       </CardHeader>
       <CardContent className="border-white/50 border-2">
-        <p>Content: {item.content}</p>
+        <h3 className="text-xl">Content:</h3>
+        <p>{item.content}</p>
       </CardContent>
       {item.fragil !== "no fragil" || item.hand !== "no hand on" ? (
         <CardContent className="flex flex-row justify-start gap-4 mt-2">
@@ -51,7 +52,7 @@ export function ItemCard({ item }: { item: Item }) {
       ) : null}
 
       <CardDescription>
-        <span className="text-slate-500">
+        <span className="text-slate-500 p-4">
           {new Date(item.creatAt).toLocaleDateString()}
         </span>
       </CardDescription>
