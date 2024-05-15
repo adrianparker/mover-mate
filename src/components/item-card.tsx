@@ -35,9 +35,9 @@ export function ItemCard({ item }: { item: Item }) {
         <CardContent className="flex flex-row justify-start gap-4 mt-2">
           {item.fragil !== "no fragil" && item.fragil ? (
             <Badge className="bg-red-500">
-            <span>
-              <p>{item.fragil?.toUpperCase()}</p>
-            </span>
+              <span>
+                <p>{item.fragil?.toUpperCase()}</p>
+              </span>
             </Badge>
           ) : null}
           {item.hand !== "no hand on" && item.hand ? (

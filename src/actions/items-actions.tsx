@@ -12,7 +12,6 @@ export async function createItem(formData: FormData) {
   const fragil = formData.get("fragil")?.toString();
   const hand = formData.get("hand")?.toString();
 
-
   if (!number || !color || !content || !room || !fragil || !hand) {
     return;
   }
