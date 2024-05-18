@@ -1,21 +1,29 @@
+# Mover Mate
+
+Mover Mate is a property move organizer. It aids in the organization of property moves, including items, numbers, rooms, hands-on management, and consideration for fragile items.
+
 ## Server-side rendering components
 
 This project is developed using a server-side rendering components approach.
-
-## Mover Mate
-
-It serves as an organizer aimed at aiding in the organization of moves, including items, numbers, rooms, hands-on management, and consideration for fragile items.
 
 This is a project using these tech:
 
 - [Next.js](https://nextjs.org/)
 - [Bun](https://bun.sh/)
 - [Shadcn](https://ui.shadcn.com/)
-- [Talwing](https://tailwindcss.com/)
+- [Tailwind](https://tailwindcss.com/)
 
 ## Getting Started
 
-First, run the development server:
+First, clone and install this repo:
+
+```bash
+git clone https://github.com/jmero01/mover-mate.git
+cd mover-mate
+npm install
+```
+
+Then, run the development server:
 
 ```bash
 bun dev
