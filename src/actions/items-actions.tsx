@@ -12,7 +12,7 @@ export async function createItem(formData: FormData) {
   const fragil = formData.get("fragil")?.toString();
   const hand = formData.get("hand")?.toString();
 
-  if (!number || !color || !content || !room || !fragil || !hand) {
+  if (!(number && color && content && room && fragil && hand)) {
     return;
   }
 
@@ -54,7 +54,7 @@ export async function updateItem(formData: FormData) {
   const fragil = formData.get("fragil")?.toString();
   const hand = formData.get("hand")?.toString();
 
-  if (!id || !room || !number || !content || !color || !fragil || !hand) {
+  if (!(id && room && number && content && color && fragil && hand)) {
     return;
   }
 
